@@ -34,8 +34,7 @@ namespace ChillNExplore
                 MenuItems = new ObservableCollection<IndexMenuItem>(new[]
                 {
                     new IndexMenuItem { Id = 0, Title = "Accueil" },
-                    new IndexMenuItem { Id = 1, Title = "Nouvelle partie" },
-                    new IndexMenuItem { Id = 2, Title = "Profil" },
+                    new IndexMenuItem { Id = 1, Title = "Profil" },
                 });
             }
             
