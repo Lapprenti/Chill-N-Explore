@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Chill_N_Explore"
              x:Class="Chill_N_Explore.MainPage">
 
-	<Label Text="Welcome to Xamarin.Forms!" 
+	<Label Text="Welcome to Chill'N'Explore !" 
            VerticalOptions="Center" 
            HorizontalOptions="Center" />
 
