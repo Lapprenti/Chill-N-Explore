@@ -14,7 +14,8 @@ namespace API.ChillNExplore.Controllers
     {
         private string key = "AIzaSyAzLjHX8ZpNZyITsdAPW2zw76tvgPcew7E";
 
-        public string Key { get => key; set => key = value; }
+        // Uniquement get car 
+        public string Key { get => key; }
         
         /// <summary>
         /// Methode qui permet de soumettre une requête web à une api en GET
@@ -76,9 +77,9 @@ namespace API.ChillNExplore.Controllers
         }
 
         /// <summary>
-        /// Retourne la position de l'utilisateur 
+        /// Retourne la position de l'utilisateur (latitude,longitude)
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         public string GetPos()
         {
             string url = "https://www.googleapis.com/geolocation/v1/geolocate?key=" + this.key;
@@ -87,9 +88,13 @@ namespace API.ChillNExplore.Controllers
             var lat = result.SelectToken("$.location.lat");
             var lng = result.SelectToken("$.location.lng");
             return lat.ToString()+","+lng.ToString();
-
         }
-
+        /// <summary>
+        /// retourne les coordonnées GPS du centre de la ville passee en parametre
+        /// </summary>
+        /// <param name="uneVille">string</param>
+        /// <returns>string</returns>
+        [Route("api/ChillNExplore/{town}/GetLatLngForCity"), HttpGet]
         public string GetLatLngForCity(string uneVille)
         {
             string url = "https://maps.googleapis.com/maps/api/geocode/json?address="+uneVille+"&key=" + this.key;
@@ -97,15 +102,18 @@ namespace API.ChillNExplore.Controllers
             JObject result = JObject.Parse(jsonResult.ToString());
             var lat = result.SelectToken("$.results[0].geometry.location.lat");
             var lng = result.SelectToken("$.results[0].geometry.location.lng");
-
             return lat.ToString() + "," + lng.ToString();
         }
-
-
+        /// <summary>
+        /// Recupère la ville et le type de lieu dans un rayon de 1000m autour du centre
+        /// </summary>
+        /// <param name="uneVille">string</param>
+        /// <param name="unType">string</param>
+        /// <returns>Les noms des 4 premiers monuments</returns>
+        [Route("api/ChillNExplore/{town}/{type}/GetNamesLieuxInterest"), HttpGet]
         public List<string> GetNamesLieuxInterest(string uneVille, string unType)
         {
             //church  //museum  //food
-
             string url = "https://maps.googleapis.com/maps/api/place/textsearch/json?type="+unType+"&location="+ GetLatLngForCity(uneVille)+"&radius=1000&key="+this.key;
             var jsonResult = GetDataFromHTTPClient(url);
             JObject result = JObject.Parse(jsonResult.ToString());
@@ -124,10 +132,16 @@ namespace API.ChillNExplore.Controllers
             return lesNoms;
         }
 
+        /// <summary>
+        /// methode qui retourne les 4 premiere localisation
+        /// </summary>
+        /// <param name="uneVille">string</param>
+        /// <param name="unType">string</param>
+        /// <returns>List<string></returns>
+        [Route("api/ChillNExplore/{town}/{type}/GetLocationLieuxInterest"), HttpGet]
         public List<string> GetLocationLieuxInterest(string uneVille, string unType)
         {
             //church  //museum  //food
-
             string url = "https://maps.googleapis.com/maps/api/place/textsearch/json?type=" + unType + "&location=" + GetLatLngForCity(uneVille) + "&radius=1000&key=" + this.key;
             var jsonResult = GetDataFromHTTPClient(url);
             JObject result = JObject.Parse(jsonResult.ToString());
@@ -149,52 +163,41 @@ namespace API.ChillNExplore.Controllers
             return lesLatitudes;
         }
 
-        // GET: api/GoogleApi
-        public List<string> GetMuseeWithLocation(string town, string type)
+        /// <summary>
+        /// retourne les 4 premiers lieu d'un type choisi associées à leur coordonnées GPS
+        /// </summary>
+        /// <param name="town">string</param>
+        /// <param name="type">string</param>
+        /// <returns>JSON</returns>
+        [Route("api/ChillNExplore/{town}/{type}/GetInterestWithLocation"), HttpGet]
+        public JArray GetInterestWithLocation(string town, string type)
         {
             string url = "https://maps.googleapis.com/maps/api/place/textsearch/json?type=" + type + "&location=" + GetLatLngForCity(town) + "&radius=1000&key=" + this.key;
             var jsonResult = GetDataFromHTTPClient(url);
             JObject result = JObject.Parse(jsonResult.ToString());
 
-            Musee musee;
-
+            List<string> interests = new List<string>();
+            JArray jArray = new JArray();
             var lesMusées = result.SelectToken("$.results");
             for (int i = 0; i <= 3; i++)
             {
-                //musee = new Musee();
                 var leMusée = lesMusées[i];
                 
                 var leNom = leMusée.SelectToken("$.name");
                 var lat = leMusée.SelectToken("$.geometry.location.lat");
                 var lng = leMusée.SelectToken("$.geometry.location.lng");
-
+                
                 var latlng = lat.ToString() + "," + lng.ToString();
 
-                //musee.AjouterMusee(leNom.ToString(), latlng);
+                JObject jObject = new JObject();
+                jObject.Add("name",leNom);
+                jObject.Add("lat", lat);
+                jObject.Add("lng", lng);
+
+                jArray.Add(jObject);
             }
-            
-            return null;
-        }
 
-        // GET: api/GoogleApi/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/GoogleApi
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/GoogleApi/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/GoogleApi/5
-        public void Delete(int id)
-        {
+            return jArray;
         }
     }
 }

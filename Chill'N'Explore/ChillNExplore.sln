@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.ChillNExplore", "API.Ch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.ChillNExplore.Tests", "API.ChillNExplore.Tests\API.ChillNExplore.Tests.csproj", "{F70FB3CD-6552-4C0B-8E09-36FAB896B049}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChillNExplore.Entities", "ChillNExplore.Entities\ChillNExplore.Entities.csproj", "{256A4D76-13C0-4249-BB4F-0521981BBB8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.ChillNExplore", "ChillNExplore.Entities\Entities.ChillNExplore.csproj", "{256A4D76-13C0-4249-BB4F-0521981BBB8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

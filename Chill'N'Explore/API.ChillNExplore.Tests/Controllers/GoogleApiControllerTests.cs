@@ -34,7 +34,7 @@ namespace API.ChillNExplore.Controllers.Tests
                 "Musée des Beaux-Arts de Dijon",
                 "Musée de la Vie bourguignonne",
                 "Musée archéologique de Dijon",
-                "Musée Magnin" // "Muséum d'histoire naturelle"
+                "Musée Magnin" // "Muséum d'histoire naturelle" | Switch entre 2 selon le moment de la query
             };
 
             var actual = googleApiController.GetNamesLieuxInterest("dijon", "museum");
@@ -49,17 +49,24 @@ namespace API.ChillNExplore.Controllers.Tests
             {
                 "47.3214246,5.0423975",
                 "47.3174169,5.0376904",
-                "47.321641,5.034822999999999", // 47.321641,5.034822999999999
+                "47.321641,5.034822999999999", // 47.321641,5.034822999999999 | Idem
                 "47.3207686,5.0421907"
             };
+
 
             var actual = googleApiController.GetLocationLieuxInterest("dijon", "museum");
 
             Assert.IsTrue(expected.SequenceEqual(actual));
             //expected.SequenceEqual
-            CollectionAssert.AreEqual(expected,actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
 
+        [TestMethod()]
+        public void GetInterestWithLocationTest()
+        {
+            var actual = googleApiController.GetInterestWithLocation("dijon", "museum");
 
+            Assert.IsNotNull(actual);
+        }
     }
 }
