@@ -150,6 +150,9 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.2" />
+    <PackageReference Include="Xamarin.Forms.Maps">
+      <Version>2.5.1.444934</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChillNExplore\ChillNExplore.csproj">
