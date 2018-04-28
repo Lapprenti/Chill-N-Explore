@@ -17,7 +17,11 @@ namespace ChillNExplore
 		{
 			InitializeComponent ();
 
-            var map = new Map(MapSpan.FromCenterAndRadius(new Position(47.3301533, 5.017527200000018), Distance.FromMiles(0.3)))
+            List<Pin> pins = new List<Pin>();
+
+
+
+            var map = new Map(MapSpan.FromCenterAndRadius(new Position(47.3214132, 5.0418964000000415), Distance.FromMiles(0.3)))
             {
                 //IsShowingUser = true,
                 HeightRequest = 100,
@@ -26,6 +30,20 @@ namespace ChillNExplore
             };
 
             stlMap.Children.Add(map);
+
+            var pin = new Pin()
+            {
+                Position = new Position(47.3214132, 5.0418964000000415),
+                Label = "Palais des Ducs de Bourgogne"
+            };
+
+            map.Pins.Add(pin);
+
+            pin.Clicked += (sender, e) => {
+                Navigation.PushAsync(new PinPage());
+            };
+
+
         }
 
         
