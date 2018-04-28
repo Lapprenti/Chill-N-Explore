@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Prenez une photo de vous devant le nom du musée !"  HorizontalOptions="Center" VerticalOptions="Center"/>
-
+            <Button FontSize="Large" VerticalOptions="CenterAndExpand" Text="Sélectionnez votre Photo"/>
             <StackLayout VerticalOptions="End">
                 <Button Text="Valider" HorizontalOptions="Center"/>
                 <Button Text="Quizz" HorizontalOptions="Center"/>
