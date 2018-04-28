@@ -16,5 +16,10 @@ namespace ChillNExplore
         {
             InitializeComponent();
         }
+
+        public async void BtnPlay_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MainMap());
+        }
     }
 }
