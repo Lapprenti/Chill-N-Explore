@@ -5,6 +5,7 @@
              Title="Accueil">
   <StackLayout Padding="10" HorizontalOptions="Center" VerticalOptions="Center">
         <Label FontSize="Large" XAlign="Center" Text="Avec Chill'N'Explore, découvrez ou re-découvrez la ville ou vous êtes ! Suivez le parcours, admirez des monuments et profitez des activités bonus !"/>
+        <Entry />
         <Button Text="Jouer" VerticalOptions="Center"/>
     </StackLayout>
 </ContentPage>
