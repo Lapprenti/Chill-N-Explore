@@ -22,6 +22,8 @@ namespace ChillNExplore.UWP
             this.InitializeComponent();
 
             LoadApplication(new ChillNExplore.App());
+
+            Xamarin.FormsMaps.Init("AlTbw0TeyxoiLwkHf7srnEFoazimb10XUE19PsRON9EWnUkbvmS7AYcSrYLwCeQL");
         }
     }
 }
