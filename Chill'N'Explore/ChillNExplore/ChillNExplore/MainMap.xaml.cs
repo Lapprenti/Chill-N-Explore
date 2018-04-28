@@ -20,14 +20,13 @@ namespace ChillNExplore
             /// calculer ses coordonnee grâce à une query sur l'api (appel de la methode 
             /// 
 
-            
-           
-            
+            List<Pin> pins = new List<Pin>();
 
-            ///
-            var map = new Map(MapSpan.FromCenterAndRadius(new Position(47.3301533, 5.017527200000018), Distance.FromMiles(0.3)))
+
+
+            var map = new Map(MapSpan.FromCenterAndRadius(new Position(47.3214132, 5.0418964000000415), Distance.FromMiles(0.3)))
             {
-                IsShowingUser = true,
+                //IsShowingUser = true,
                 HeightRequest = 100,
                 WidthRequest = 960,
                 VerticalOptions = LayoutOptions.FillAndExpand
@@ -36,19 +35,18 @@ namespace ChillNExplore
             // AJout de la map
             stlMap.Children.Add(map);
 
-            //    var pin = new Pin()
-            //    {
-            //        Position = new Position(47.3301533, 5.017527200000018),
-            //        Label = "Vous êtes ici !"
-            //    };
+            var pin = new Pin()
+            {
+                Position = new Position(47.3214132, 5.0418964000000415),
+                Label = "Palais des Ducs de Bourgogne"
+            };
 
-            //    map.Pins.Add(pin);
-        }
+            map.Pins.Add(pin);
 
+            pin.Clicked += (sender, e) => {
+                Navigation.PushAsync(new PinPage());
+            };
 
-        private async void GetRequestAccessAsync()
-        {
-            var accessStatus = await Geolocator.RequestAccessAsync();
 
         }
 
