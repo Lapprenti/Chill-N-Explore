@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Projet24Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="joueur">
+          <Key>
+            <PropertyRef Name="idjoueur" />
+          </Key>
+          <Property Name="idjoueur" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="idville" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="pseudo" Type="varchar" MaxLength="128" />
+          <Property Name="photo" Type="varchar" MaxLength="800" />
+          <Property Name="datenaissance" Type="datetime" />
+        </EntityType>
+        <EntityType Name="lieu">
+          <Key>
+            <PropertyRef Name="idlieu" />
+          </Key>
+          <Property Name="idlieu" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="idquizz" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="idville" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="128" />
+          <Property Name="type" Type="varchar" MaxLength="128" />
+          <Property Name="pos" Type="varchar" MaxLength="128" />
+          <Property Name="photo" Type="varchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="question">
+          <Key>
+            <PropertyRef Name="idquestion" />
+          </Key>
+          <Property Name="idquestion" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="idquizz" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="intitule" Type="varchar" MaxLength="128" />
+          <Property Name="image" Type="varchar" MaxLength="128" />
+          <Property Name="réponse" Type="char" MaxLength="32" />
+          <Property Name="indice" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="quizz">
+          <Key>
+            <PropertyRef Name="idquizz" />
+          </Key>
+          <Property Name="idquizz" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="resultat" Type="real" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="ville">
+          <Key>
+            <PropertyRef Name="idville" />
+          </Key>
+          <Property Name="idville" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="128" />
+          <Property Name="pos" Type="varchar" MaxLength="128" />
+          <Property Name="rayon" Type="real" />
+        </EntityType>
+        <Association Name="fk_joueur_ville">
+          <End Role="ville" Type="Self.ville" Multiplicity="1" />
+          <End Role="joueur" Type="Self.joueur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ville">
+              <PropertyRef Name="idville" />
+            </Principal>
+            <Dependent Role="joueur">
+              <PropertyRef Name="idville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_lieu_quizz">
+          <End Role="quizz" Type="Self.quizz" Multiplicity="1" />
+          <End Role="lieu" Type="Self.lieu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quizz">
+              <PropertyRef Name="idquizz" />
+            </Principal>
+            <Dependent Role="lieu">
+              <PropertyRef Name="idquizz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_lieu_ville">
+          <End Role="ville" Type="Self.ville" Multiplicity="1" />
+          <End Role="lieu" Type="Self.lieu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ville">
+              <PropertyRef Name="idville" />
+            </Principal>
+            <Dependent Role="lieu">
+              <PropertyRef Name="idville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_question_quizz">
+          <End Role="quizz" Type="Self.quizz" Multiplicity="1" />
+          <End Role="question" Type="Self.question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quizz">
+              <PropertyRef Name="idquizz" />
+            </Principal>
+            <Dependent Role="question">
+              <PropertyRef Name="idquizz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Projet24ModelStoreContainer">
+          <EntitySet Name="joueur" EntityType="Self.joueur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lieu" EntityType="Self.lieu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="question" EntityType="Self.question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="quizz" EntityType="Self.quizz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ville" EntityType="Self.ville" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_joueur_ville" Association="Self.fk_joueur_ville">
+            <End Role="ville" EntitySet="ville" />
+            <End Role="joueur" EntitySet="joueur" />
+          </AssociationSet>
+          <AssociationSet Name="fk_lieu_quizz" Association="Self.fk_lieu_quizz">
+            <End Role="quizz" EntitySet="quizz" />
+            <End Role="lieu" EntitySet="lieu" />
+          </AssociationSet>
+          <AssociationSet Name="fk_lieu_ville" Association="Self.fk_lieu_ville">
+            <End Role="ville" EntitySet="ville" />
+            <End Role="lieu" EntitySet="lieu" />
+          </AssociationSet>
+          <AssociationSet Name="fk_question_quizz" Association="Self.fk_question_quizz">
+            <End Role="quizz" EntitySet="quizz" />
+            <End Role="question" EntitySet="question" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Projet24Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="joueur">
+          <Key>
+            <PropertyRef Name="idjoueur" />
+          </Key>
+          <Property Name="idjoueur" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="idville" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="pseudo" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="photo" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="datenaissance" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ville" Relationship="Self.fk_joueur_ville" FromRole="joueur" ToRole="ville" />
+        </EntityType>
+        <EntityType Name="lieu">
+          <Key>
+            <PropertyRef Name="idlieu" />
+          </Key>
+          <Property Name="idlieu" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="idquizz" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="idville" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="pos" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="photo" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="quizz" Relationship="Self.fk_lieu_quizz" FromRole="lieu" ToRole="quizz" />
+          <NavigationProperty Name="ville" Relationship="Self.fk_lieu_ville" FromRole="lieu" ToRole="ville" />
+        </EntityType>
+        <EntityType Name="question">
+          <Key>
+            <PropertyRef Name="idquestion" />
+          </Key>
+          <Property Name="idquestion" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="idquizz" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="intitule" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="réponse" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Name="indice" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="quizz" Relationship="Self.fk_question_quizz" FromRole="question" ToRole="quizz" />
+        </EntityType>
+        <EntityType Name="quizz">
+          <Key>
+            <PropertyRef Name="idquizz" />
+          </Key>
+          <Property Name="idquizz" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="resultat" Type="Single" />
+          <NavigationProperty Name="lieux" Relationship="Self.fk_lieu_quizz" FromRole="quizz" ToRole="lieu" />
+          <NavigationProperty Name="questions" Relationship="Self.fk_question_quizz" FromRole="quizz" ToRole="question" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ville">
+          <Key>
+            <PropertyRef Name="idville" />
+          </Key>
+          <Property Name="idville" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="pos" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="rayon" Type="Single" />
+          <NavigationProperty Name="joueurs" Relationship="Self.fk_joueur_ville" FromRole="ville" ToRole="joueur" />
+          <NavigationProperty Name="lieux" Relationship="Self.fk_lieu_ville" FromRole="ville" ToRole="lieu" />
+        </EntityType>
+        <Association Name="fk_joueur_ville">
+          <End Role="ville" Type="Self.ville" Multiplicity="1" />
+          <End Role="joueur" Type="Self.joueur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ville">
+              <PropertyRef Name="idville" />
+            </Principal>
+            <Dependent Role="joueur">
+              <PropertyRef Name="idville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_lieu_quizz">
+          <End Role="quizz" Type="Self.quizz" Multiplicity="1" />
+          <End Role="lieu" Type="Self.lieu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quizz">
+              <PropertyRef Name="idquizz" />
+            </Principal>
+            <Dependent Role="lieu">
+              <PropertyRef Name="idquizz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_lieu_ville">
+          <End Role="ville" Type="Self.ville" Multiplicity="1" />
+          <End Role="lieu" Type="Self.lieu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ville">
+              <PropertyRef Name="idville" />
+            </Principal>
+            <Dependent Role="lieu">
+              <PropertyRef Name="idville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_question_quizz">
+          <End Role="quizz" Type="Self.quizz" Multiplicity="1" />
+          <End Role="question" Type="Self.question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="quizz">
+              <PropertyRef Name="idquizz" />
+            </Principal>
+            <Dependent Role="question">
+              <PropertyRef Name="idquizz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Projet24Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="joueurs" EntityType="Self.joueur" />
+          <EntitySet Name="lieux" EntityType="Self.lieu" />
+          <EntitySet Name="questions" EntityType="Self.question" />
+          <EntitySet Name="quizzs" EntityType="Self.quizz" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="villes" EntityType="Self.ville" />
+          <AssociationSet Name="fk_joueur_ville" Association="Self.fk_joueur_ville">
+            <End Role="ville" EntitySet="villes" />
+            <End Role="joueur" EntitySet="joueurs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_lieu_quizz" Association="Self.fk_lieu_quizz">
+            <End Role="quizz" EntitySet="quizzs" />
+            <End Role="lieu" EntitySet="lieux" />
+          </AssociationSet>
+          <AssociationSet Name="fk_lieu_ville" Association="Self.fk_lieu_ville">
+            <End Role="ville" EntitySet="villes" />
+            <End Role="lieu" EntitySet="lieux" />
+          </AssociationSet>
+          <AssociationSet Name="fk_question_quizz" Association="Self.fk_question_quizz">
+            <End Role="quizz" EntitySet="quizzs" />
+            <End Role="question" EntitySet="questions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Projet24ModelStoreContainer" CdmEntityContainer="Projet24Entities">
+          <EntitySetMapping Name="joueurs">
+            <EntityTypeMapping TypeName="Projet24Model.joueur">
+              <MappingFragment StoreEntitySet="joueur">
+                <ScalarProperty Name="idjoueur" ColumnName="idjoueur" />
+                <ScalarProperty Name="idville" ColumnName="idville" />
+                <ScalarProperty Name="pseudo" ColumnName="pseudo" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="datenaissance" ColumnName="datenaissance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lieux">
+            <EntityTypeMapping TypeName="Projet24Model.lieu">
+              <MappingFragment StoreEntitySet="lieu">
+                <ScalarProperty Name="idlieu" ColumnName="idlieu" />
+                <ScalarProperty Name="idquizz" ColumnName="idquizz" />
+                <ScalarProperty Name="idville" ColumnName="idville" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="pos" ColumnName="pos" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="questions">
+            <EntityTypeMapping TypeName="Projet24Model.question">
+              <MappingFragment StoreEntitySet="question">
+                <ScalarProperty Name="idquestion" ColumnName="idquestion" />
+                <ScalarProperty Name="idquizz" ColumnName="idquizz" />
+                <ScalarProperty Name="intitule" ColumnName="intitule" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="réponse" ColumnName="réponse" />
+                <ScalarProperty Name="indice" ColumnName="indice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quizzs">
+            <EntityTypeMapping TypeName="Projet24Model.quizz">
+              <MappingFragment StoreEntitySet="quizz">
+                <ScalarProperty Name="idquizz" ColumnName="idquizz" />
+                <ScalarProperty Name="resultat" ColumnName="resultat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Projet24Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="villes">
+            <EntityTypeMapping TypeName="Projet24Model.ville">
+              <MappingFragment StoreEntitySet="ville">
+                <ScalarProperty Name="idville" ColumnName="idville" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="pos" ColumnName="pos" />
+                <ScalarProperty Name="rayon" ColumnName="rayon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

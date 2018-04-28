@@ -22,6 +22,8 @@ namespace ChillNExplore.UWP
             this.InitializeComponent();
 
             LoadApplication(new ChillNExplore.App());
+            /// Mise en place de la clef permettant d'acceder a la map bing
+            Xamarin.FormsMaps.Init("AlTbw0TeyxoiLwkHf7srnEFoazimb10XUE19PsRON9EWnUkbvmS7AYcSrYLwCeQL");
         }
     }
 }
