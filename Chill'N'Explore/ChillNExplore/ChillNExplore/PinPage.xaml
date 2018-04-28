@@ -4,9 +4,12 @@
              x:Class="ChillNExplore.PinPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Premiere destination !"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Prenez une photo de vous devant le nom du musée !"  HorizontalOptions="Center" VerticalOptions="Center"/>
+
+            <StackLayout VerticalOptions="End">
+                <Button Text="Valider" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button Text="Quizz" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

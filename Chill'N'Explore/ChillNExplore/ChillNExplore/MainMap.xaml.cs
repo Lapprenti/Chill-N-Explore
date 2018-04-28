@@ -42,8 +42,8 @@ namespace ChillNExplore
 
             var pin = new Pin()
             {
-                Position = new Position(47.3214132, 5.0418964000000415),
-                Label = "Palais des Ducs de Bourgogne"
+                Position = new Position(47.3212274, 5.027678899999955),
+                Label = "Jardin de l'Arquebuse"
             };
 
             map.Pins.Add(pin);
