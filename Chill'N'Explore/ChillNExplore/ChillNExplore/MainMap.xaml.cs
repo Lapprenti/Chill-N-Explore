@@ -17,21 +17,21 @@ namespace ChillNExplore
 		{
 			InitializeComponent ();
 
-            //var map = new Map(MapSpan.FromCenterAndRadius(new Position(47.3301533, 5.017527200000018), Distance.FromMiles(0.3)))
-            //{
-            //    IsShowingUser = true,
-            //    HeightRequest = 100,
-            //    WidthRequest = 960,
-            //    VerticalOptions = LayoutOptions.FillAndExpand
-            //};
+            var map = new Map(MapSpan.FromCenterAndRadius(new Position(47.3301533, 5.017527200000018), Distance.FromMiles(0.3)))
+            {
+                IsShowingUser = true,
+                HeightRequest = 100,
+                WidthRequest = 960,
+                VerticalOptions = LayoutOptions.FillAndExpand
+            };
 
-            //this.Content = new StackLayout
-            //{
-            //    Children =
-            //    {
-            //        map
-            //    }
-            //};
+            this.Content = new StackLayout
+            {
+                Children =
+                {
+                    map
+                }
+            };
         }
 
         
