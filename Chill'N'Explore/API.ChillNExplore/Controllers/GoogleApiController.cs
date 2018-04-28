@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using API.ChillNExplore.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -88,10 +89,91 @@ namespace API.ChillNExplore.Controllers
             return lat.ToString()+","+lng.ToString();
 
         }
-        // GET: api/GoogleApi
-        public IEnumerable<string> Get()
+
+        public string GetLatLngForCity(string uneVille)
         {
-            return new string[] { "value1", "value2" };
+            string url = "https://maps.googleapis.com/maps/api/geocode/json?address="+uneVille+"&key=" + this.key;
+            var jsonResult = GetDataFromHTTPClient(url);
+            JObject result = JObject.Parse(jsonResult.ToString());
+            var lat = result.SelectToken("$.results[0].geometry.location.lat");
+            var lng = result.SelectToken("$.results[0].geometry.location.lng");
+
+            return lat.ToString() + "," + lng.ToString();
+        }
+
+
+        public List<string> GetNamesLieuxInterest(string uneVille, string unType)
+        {
+            //church  //museum  //food
+
+            string url = "https://maps.googleapis.com/maps/api/place/textsearch/json?type="+unType+"&location="+ GetLatLngForCity(uneVille)+"&radius=1000&key="+this.key;
+            var jsonResult = GetDataFromHTTPClient(url);
+            JObject result = JObject.Parse(jsonResult.ToString());
+            var lesMusées = result.SelectToken("$.results");
+            
+            List<string> lesNoms = new List<string>();
+
+            for (int i = 0; i <=3 ; i++)
+            {
+                
+                var leMusée = lesMusées[i];
+                var leNom = leMusée.SelectToken("$.name");
+                lesNoms.Add(leNom.ToString());
+            }
+
+            return lesNoms;
+        }
+
+        public List<string> GetLocationLieuxInterest(string uneVille, string unType)
+        {
+            //church  //museum  //food
+
+            string url = "https://maps.googleapis.com/maps/api/place/textsearch/json?type=" + unType + "&location=" + GetLatLngForCity(uneVille) + "&radius=1000&key=" + this.key;
+            var jsonResult = GetDataFromHTTPClient(url);
+            JObject result = JObject.Parse(jsonResult.ToString());
+            var lesMusées = result.SelectToken("$.results");
+
+            List<string> lesLatitudes = new List<string>();
+
+            for (int i = 0; i <= 3; i++)
+            {
+
+                var leMusée = lesMusées[i];
+                var lat = leMusée.SelectToken("$.geometry.location.lat");
+                var lng = leMusée.SelectToken("$.geometry.location.lng");
+
+                var latlng = lat.ToString() + "," + lng.ToString();
+                lesLatitudes.Add(latlng);
+            }
+
+            return lesLatitudes;
+        }
+
+        // GET: api/GoogleApi
+        public List<string> GetMuseeWithLocation(string town, string type)
+        {
+            string url = "https://maps.googleapis.com/maps/api/place/textsearch/json?type=" + type + "&location=" + GetLatLngForCity(town) + "&radius=1000&key=" + this.key;
+            var jsonResult = GetDataFromHTTPClient(url);
+            JObject result = JObject.Parse(jsonResult.ToString());
+
+            Musee musee;
+
+            var lesMusées = result.SelectToken("$.results");
+            for (int i = 0; i <= 3; i++)
+            {
+                //musee = new Musee();
+                var leMusée = lesMusées[i];
+                
+                var leNom = leMusée.SelectToken("$.name");
+                var lat = leMusée.SelectToken("$.geometry.location.lat");
+                var lng = leMusée.SelectToken("$.geometry.location.lng");
+
+                var latlng = lat.ToString() + "," + lng.ToString();
+
+                //musee.AjouterMusee(leNom.ToString(), latlng);
+            }
+            
+            return null;
         }
 
         // GET: api/GoogleApi/5
