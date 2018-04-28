@@ -13,7 +13,7 @@ namespace ChillNExplore
 		{
 			InitializeComponent();
 
-			MainPage = new ChillNExplore.MainPage();
+			MainPage = new ChillNExplore.Page1();
 		}
 
 		protected override void OnStart ()
