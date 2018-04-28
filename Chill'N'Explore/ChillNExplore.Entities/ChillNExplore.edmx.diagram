@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="736f1eafb8f84ca39dcc5e899ce5c0b4" Name="Diagram1">
+        <EntityTypeShape EntityType="Projet24Model.joueur" Width="1.5" PointX="5.875" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Projet24Model.lieu" Width="1.5" PointX="7.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Projet24Model.question" Width="1.5" PointX="0.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Projet24Model.quizz" Width="1.5" PointX="1.375" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Projet24Model.sysdiagram" Width="1.5" PointX="14.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Projet24Model.ville" Width="1.5" PointX="4.125" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="Projet24Model.fk_joueur_ville" ManuallyRouted="false" />
+        <AssociationConnector Association="Projet24Model.fk_lieu_quizz" ManuallyRouted="false" />
+        <AssociationConnector Association="Projet24Model.fk_lieu_ville" ManuallyRouted="false" />
+        <AssociationConnector Association="Projet24Model.fk_question_quizz" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
