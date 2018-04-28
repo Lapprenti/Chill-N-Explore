@@ -17,14 +17,17 @@ namespace ChillNExplore
 		{
 			InitializeComponent ();
             /// Récupérer la ville entrée dans la textbox
+            var laVille = App.nameCity;
             /// calculer ses coordonnee grâce à une query sur l'api (appel de la methode 
-            /// 
+            string stringLatitude = "http://35.190.168.129:8080/api/ChillNExplore/" + laVille + "/GetLatForCity";
+            string stringLongitude = "http://35.190.168.129:8080/api/ChillNExplore/" + laVille + "/GetLngForCity";
 
+            double latitude = double.Parse(stringLatitude);
+            double longitude = double.Parse(stringLongitude);
+     
             List<Pin> pins = new List<Pin>();
 
-
-
-            var map = new Map(MapSpan.FromCenterAndRadius(new Position(47.3214132, 5.0418964000000415), Distance.FromMiles(0.3)))
+            var map = new Map(MapSpan.FromCenterAndRadius(new Position(latitude,longitude), Distance.FromMiles(0.3)))
             {
                 //IsShowingUser = true,
                 HeightRequest = 100,
@@ -34,6 +37,8 @@ namespace ChillNExplore
 
             // AJout de la map
             stlMap.Children.Add(map);
+
+            //"http://35.190.168.129:8080/api/ChillNExplore/" + laVille + "/GetInterestWithLocation";
 
             var pin = new Pin()
             {

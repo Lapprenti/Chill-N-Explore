@@ -9,11 +9,13 @@ namespace ChillNExplore
 {
 	public partial class App : Application
 	{
+        internal static object nameCity;
 		public App ()
 		{
 			InitializeComponent();
 
 			MainPage = new MainPage();
+            
         }
 
 		protected override void OnStart ()

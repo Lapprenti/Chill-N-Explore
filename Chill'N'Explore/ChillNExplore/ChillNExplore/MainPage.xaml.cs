@@ -17,6 +17,7 @@ namespace ChillNExplore
         public void BtnPlay_Clicked(object sender, EventArgs e)
         {
             App.Current.MainPage = new NavigationPage(new MainMap());
+            App.nameCity = NomDeLaVille.Text;
         }
     }
 }

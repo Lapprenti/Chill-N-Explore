@@ -6,7 +6,7 @@
 
     <StackLayout Padding="10" HorizontalOptions="Center" VerticalOptions="Center">
         <Label FontSize="Large" XAlign="Center" Text="Avec Chill'N'Explore, découvrez ou re-découvrez la ville ou vous êtes ! Suivez le parcours, admirez des monuments et profitez des activités bonus !"/>
-        <Entry Placeholder="Nom de la ville"/>
+        <Entry Placeholder="Nom de la ville" x:Name="NomDeLaVille"/>
         <Button Text="Jouer" VerticalOptions="Center" Clicked="BtnPlay_Clicked"/>
     </StackLayout>
 

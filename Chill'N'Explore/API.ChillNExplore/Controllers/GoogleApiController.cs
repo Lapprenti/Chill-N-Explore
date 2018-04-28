@@ -105,6 +105,34 @@ namespace API.ChillNExplore.Controllers
             return lat.ToString() + "," + lng.ToString();
         }
         /// <summary>
+        /// retourne la latitude GPS du centre de la ville passe en parametre
+        /// </summary>
+        /// <param name="uneVille">string</param>
+        /// <returns>string latitude</returns>
+        [Route("api/ChillNExplore/{town}/GetLatForCity"), HttpGet]
+        public string GetLatForCity(string uneVille)
+        {
+            string url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + uneVille + "&key=" + this.key;
+            var jsonResult = GetDataFromHTTPClient(url);
+            JObject result = JObject.Parse(jsonResult.ToString());
+            var lat = result.SelectToken("$.results[0].geometry.location.lat");
+            return lat.ToString();
+        }
+        /// <summary>
+        /// retourne la longitude GPS du centre de la ville passe en parametre
+        /// </summary>
+        /// <param name="uneVille">string</param>
+        /// <returns>string longitude</returns>
+        [Route("api/ChillNExplore/{town}/GetLngForCity"), HttpGet]
+        public string GetLngForCity(string uneVille)
+        {
+            string url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + uneVille + "&key=" + this.key;
+            var jsonResult = GetDataFromHTTPClient(url);
+            JObject result = JObject.Parse(jsonResult.ToString());
+            var lng = result.SelectToken("$.results[0].geometry.location.lng");
+            return lng.ToString();
+        }
+        /// <summary>
         /// Recupère la ville et le type de lieu dans un rayon de 1000m autour du centre
         /// </summary>
         /// <param name="uneVille">string</param>
