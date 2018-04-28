@@ -18,6 +18,7 @@ namespace ChillNExplore
         {
             App.Current.MainPage = new NavigationPage(new MainMap());
             App.nameCity = NomDeLaVille.Text;
+            App.typeName = TypeLieu.Text;
         }
     }
 }

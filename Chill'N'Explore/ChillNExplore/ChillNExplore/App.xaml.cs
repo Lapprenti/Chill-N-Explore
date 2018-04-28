@@ -10,7 +10,8 @@ namespace ChillNExplore
 	public partial class App : Application
 	{
         internal static object nameCity;
-		public App ()
+        internal static object typeName;
+        public App ()
 		{
 			InitializeComponent();
 

@@ -7,8 +7,8 @@
             <Label Text="Prenez une photo de vous devant le nom du musée !"  HorizontalOptions="Center" VerticalOptions="Center"/>
 
             <StackLayout VerticalOptions="End">
-                <Button Text="Valider" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Button Text="Quizz" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button Text="Valider" HorizontalOptions="Center"/>
+                <Button Text="Quizz" HorizontalOptions="Center"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

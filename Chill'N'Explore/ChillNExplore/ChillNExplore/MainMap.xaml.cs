@@ -18,6 +18,7 @@ namespace ChillNExplore
 			InitializeComponent ();
             /// Récupérer la ville entrée dans la textbox
             var laVille = App.nameCity;
+            var typeLieu = App.typeName;
             /// calculer ses coordonnee grâce à une query sur l'api (appel de la methode 
             string stringLatitude = "http://35.190.168.129:8080/api/ChillNExplore/" + laVille + "/GetLatForCity";
             string stringLongitude = "http://35.190.168.129:8080/api/ChillNExplore/" + laVille + "/GetLngForCity";
