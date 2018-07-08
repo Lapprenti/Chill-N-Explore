@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChillNExplore.AddAcc1" BackgroundColor="#FF72E68C">
+    <ContentPage.Content>
+        <StackLayout  Padding="10" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#FF72E68C">
+            <Label  Text="Adresse mail:"  VerticalOptions="Center" ></Label>  <Entry x:Name="Addr" TextChanged="ChangeAddr" ></Entry>
+            <Label Text="Retappez l'adresse mail"></Label>
+            <Entry x:Name="AddrVerif" TextChanged="ChangeAddr"></Entry>
+            <Label Text="Mot de passe"></Label>
+            <Entry x:Name="Mdp" IsPassword="True" TextChanged="ChangeMdp"></Entry>
+            <Label Text="Retappez le mot de passe"></Label>
+            <Entry x:Name="MdpVerif" IsPassword="True" TextChanged="ChangeMdp"></Entry>
+            <Button Text="Créer compte" Clicked="AddAccount_Clik"> </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

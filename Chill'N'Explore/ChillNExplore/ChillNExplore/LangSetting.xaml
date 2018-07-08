@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChillNExplore.LangSetting"
+             BackgroundColor="#FF72E68C">
+    <StackLayout BackgroundColor="#FF72E68C" HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
+        <Button Text="French"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" Clicked="FrenchButt_Clicked" />
+        <Button Text="English" VerticalOptions="Center" HorizontalOptions="Center" Clicked="EnglishButt_Clicked" />
+    </StackLayout>
+</ContentPage>

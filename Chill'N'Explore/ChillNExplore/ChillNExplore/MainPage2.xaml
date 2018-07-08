@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ChillNExplore"
+             x:Class="ChillNExplore.MainPage2"
+             BackgroundColor="#FF72E68C"
+         >
+
+    <StackLayout Padding="10" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#FF72E68C">
+        <Image x:Name="ParametreLogo" Source="Param.png"></Image>
+        <Image x:Name="Logo" Source="logoV3.png" ></Image>
+
+        <Label x:Name="LabelMainPage" FontSize="Large" XAlign="Center" Text="Avec Chill'N'Explore, découvrez ou re-découvrez la ville ou vous êtes !"/>
+
+    </StackLayout>
+    
+</ContentPage>

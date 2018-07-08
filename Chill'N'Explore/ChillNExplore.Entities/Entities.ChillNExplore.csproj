@@ -107,6 +107,9 @@
       <DependentUpon>ChillNExplore.edmx</DependentUpon>
       <LastGenOutput>ChillNExplore.cs</LastGenOutput>
     </Content>
+    <EmbeddedResource Include="logoV3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

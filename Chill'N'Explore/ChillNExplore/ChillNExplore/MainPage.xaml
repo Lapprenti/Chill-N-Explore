@@ -2,13 +2,21 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ChillNExplore"
-             x:Class="ChillNExplore.MainPage">
+             x:Class="ChillNExplore.MainPage"
+             BackgroundColor="#FF72E68C"
+         >
+    
+ 
+    <StackLayout Padding="10" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#FF72E68C">
+      
+        <Image x:Name="ParametreLogo" Source="Param.png" Margin="10"></Image>
+        <Image x:Name="Logo" Source="logoV3.png" ></Image>
+        <Label x:Name="ErrorLang" Opacity="0" TextColor="Red" FontSize="Medium" XAlign="Center" Text="Error you have to create an account"></Label>
+<!--        <Button x:Name="ErrorButt" Opacity="0" TextColor="Red" Text="Ok" VerticalOptions="Center" Clicked="BtnErr_Clicked"/>
+-->
+        <Label x:Name="LabelMainPage" FontSize="Large" XAlign="Center" Text="Avec Chill'N'Explore, découvrez ou re-découvrez la ville ou vous êtes !"/>
+     
 
-    <StackLayout Padding="10" HorizontalOptions="Center" VerticalOptions="Center">
-        <Label FontSize="Large" XAlign="Center" Text="Avec Chill'N'Explore, découvrez ou re-découvrez la ville ou vous êtes ! Suivez le parcours, admirez des monuments et profitez des activités bonus !"/>
-        <Entry Placeholder="Nom de la ville" x:Name="NomDeLaVille"/>
-        <Entry Placeholder="Type de lieu" x:Name="TypeLieu"/>
-        <Button Text="Jouer" VerticalOptions="Center" Clicked="BtnPlay_Clicked"/>
     </StackLayout>
 
 </ContentPage>

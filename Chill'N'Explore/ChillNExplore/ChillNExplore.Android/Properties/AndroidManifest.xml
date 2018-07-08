@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.ChillNExplore" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="24" />
+	<uses-sdk android:minSdkVersion="24" android:targetSdkVersion="24" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
@@ -8,8 +8,8 @@
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<application android:label="ChillNExplore.Android"></application>
+	<application android:label="ChillNExplore.Android" android:icon="@drawable/icon"></application>
 	<application android:label="ChillNExplore.Android">
-		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AlTbw0TeyxoiLwkHf7srnEFoazimb10XUE19PsRON9EWnUkbvmS7AYcSrYLwCeQL" />
-	</application>
+	<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AlTbw0TeyxoiLwkHf7srnEFoazimb10XUE19PsRON9EWnUkbvmS7AYcSrYLwCeQL" />
+</application>
 </manifest>

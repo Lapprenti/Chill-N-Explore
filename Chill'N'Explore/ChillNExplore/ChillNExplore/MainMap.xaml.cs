@@ -8,14 +8,20 @@ using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
+
 namespace ChillNExplore
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MainMap : ContentPage
 	{
-		public MainMap ()
+        ProfilsDataAccess dataAccess;
+        Profil LeProfil;
+        public MainMap ()
 		{
 			InitializeComponent ();
+
+            this.dataAccess = new ProfilsDataAccess();
+
             /// Récupérer la ville entrée dans la textbox
             //var laVille = App.nameCity;
             ///// calculer ses coordonnee grâce à une query sur l'api (appel de la methode 
@@ -24,10 +30,16 @@ namespace ChillNExplore
 
             //double latitude = double.Parse(stringLatitude);
             //double longitude = double.Parse(stringLongitude);
-     
+
             //List<Pin> pins = new List<Pin>();
 
+            // this.dataAccess = new ProfilsDataAccess();
+            LeProfil = this.dataAccess.GetProfil();
+            PseudoLabel.Text = LeProfil.Pseudo;
+            ParametreLogo.GestureRecognizers.Add(new TapGestureRecognizer(ParamLang));
 
+
+          
 
             var map = new Map(MapSpan.FromCenterAndRadius(new Position(47.3212274, 5.027678899999955), Distance.FromMiles(0.3)))
             {
@@ -54,6 +66,14 @@ namespace ChillNExplore
                 Navigation.PushAsync(new PinPage());
             };
 
+
+        }
+      
+
+        //Event changer langue
+        private void ParamLang(View arg1, object arg2)
+        {
+            App.Current.MainPage = new NavigationPage(new LangSetting());
 
         }
 
